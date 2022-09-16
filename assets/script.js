@@ -16,13 +16,13 @@ var generateBtn = document.querySelector("#generate");
 
 // generatePassword 
 //    -take input from prompts as variables
-//        -boolean to include numbers
-//        -boolean to include special characters
-//        -boolean to include lowercase letters
-//        -boolean to include uppercase letters
-//        -variable to store the length of the password
+//        -boolean to include numbers DONE
+//        -boolean to include special characters DONE
+//        -boolean to include lowercase letters DONE
+//        -boolean to include uppercase letters DONE
+//        -variable to store the length of the password DONE  
 
-//    -depending on prompts, a new array containing all of the available choices
+//    -depending on prompts, a new array containing all of the available choices DONE
 
 //    - a for loop that iterates a number of times equal to the length of the password
 //        - each iteration, a character from the master array is added to the new password string
@@ -49,7 +49,6 @@ function writePassword() {
       alert('Not within parameters. Password must be at least 8 characters, max 128 characters');
     }
     // - figure out how to reset variable input if alert is pinged
-
 
     // Prompt variables
     // - figure out how to use .toLowercase method on the prompt variables
@@ -90,11 +89,18 @@ function writePassword() {
       if (choiceOfNumber === 'y') {
         addCharLoop(numberArray);
       }
-    
-      console.log(masterCharacterArray);
+    }
+
+    function addCharToPassword() {
+      for (var i = 0; i < numberOfCharacters; i++) {
+        var randIndex = Math.floor(Math.random() * masterCharacterArray.length);
+        newPassword += masterCharacterArray[randIndex];
+      }
     }
     
-    createMasterArray()
+    createMasterArray();
+    addCharToPassword();
+    return newPassword;
   };
   passwordText.value = password;
 }
