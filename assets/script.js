@@ -68,32 +68,29 @@ function writePassword() {
 
 
     // Master Array Function 
-    // -figure out how to consolidate this code
+    // -figure out how to consolidate this code DONE
 
     function createMasterArray() {
-      if (choiceOfLower === 'y') {
-        for (var i = 0; i < lowerCharacters.length; i++) {
-          masterCharacterArray.push(lowerCharacters[i])
+
+      function addCharLoop(array) {
+        for (var i = 0; i < array.length; i++) {
+          masterCharacterArray.push(array[i])
         }
-      } 
-      
-      if (choiceOfUpper === 'y') {
-        for (var i = 0; i < upperCharacters.length; i++) {
-          masterCharacterArray.push(upperCharacters[i])
-        }
-      } 
-      
-      if (choiceOfSpecial === 'y') {
-        for (var i = 0; i < specialCharacters.length; i++) {
-          masterCharacterArray.push(specialCharacters[i])
-        }
-      } 
-      
-      if (choiceOfNumber === 'y') {
-        for (var i = 0; i < numberArray.length; i++) {
-          masterCharacterArray.push(numberArray[i])
       }
-    }
+
+      if (choiceOfLower === 'y') {
+        addCharLoop(lowerCharacters);
+      } 
+      if (choiceOfUpper === 'y') {
+       addCharLoop(upperCharacters);
+      } 
+      if (choiceOfSpecial === 'y') {
+        addCharLoop(specialCharacters)
+      } 
+      if (choiceOfNumber === 'y') {
+        addCharLoop(numberArray);
+      }
+    
       console.log(masterCharacterArray);
     }
     
