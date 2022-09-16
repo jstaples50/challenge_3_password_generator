@@ -48,23 +48,31 @@ function writePassword() {
     }
     // - figure out how to reset variable input if alert is pinged
 
-    var lowerCharacters = prompt('Include lowercase letters?\ny/n').toLocaleLowerCase;
-    var upperCharacters = prompt('Include uppercase letters?\ny/n').toLocaleLowerCase;
-    var includeSpecial = prompt('Include special characters?\ny/n').toLocaleLowerCase;
-    var includeNumbers = prompt('Include numbers?\ny/n').toLocaleLowerCase;
+    var lowerCharacters = prompt('Include lowercase letters?\ny/n');
+    lowerCharacters = lowerCharacters.toLocaleLowerCase;
+
+    var upperCharacters = prompt('Include uppercase letters?\ny/n');
+    upperCharacters = upperCharacters.toLocaleLowerCase;
+
+    var includeSpecial = prompt('Include special characters?\ny/n');
+    includeNumbers = includeNumbers.toLocaleLowerCase;
+
+    var includeNumbers = prompt('Include numbers?\ny/n');
+    includeNumbers = includeNumbers.toLocaleLowerCase;
 
     function createMasterArray() {
       if (lowerCharacters === 'y') {
-        
+        for (var i = 0; i < regCharacters.length; i++) {
+          masterCharacterArray.push(regCharacters[i])
+        }
       }
-      }
+
+      console.log(masterCharacterArray);
     }
-
-
-
+    
+    createMasterArray()
   };
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
