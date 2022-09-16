@@ -34,8 +34,10 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+
   function generatePassword() {
-    var regCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    var lowerCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    var upperCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split('');
       // - figure out how to use split with this var
     var numberArray = '1234567890'.split('');
@@ -48,25 +50,50 @@ function writePassword() {
     }
     // - figure out how to reset variable input if alert is pinged
 
-    var lowerCharacters = prompt('Include lowercase letters?\ny/n');
-    lowerCharacters = lowerCharacters.toLocaleLowerCase;
 
-    var upperCharacters = prompt('Include uppercase letters?\ny/n');
-    upperCharacters = upperCharacters.toLocaleLowerCase;
+    // Prompt variables
+    // - figure out how to use .toLowercase method on the prompt variables
 
-    var includeSpecial = prompt('Include special characters?\ny/n');
-    includeNumbers = includeNumbers.toLocaleLowerCase;
+    var choiceOfLower = prompt('Include lowercase letters?\ny/n');
+    choiceOfLower = choiceOfLower;
+    
+    var choiceOfUpper = prompt('Include uppercase letters?\ny/n');
+    choiceOfUpper = choiceOfUpper;
 
-    var includeNumbers = prompt('Include numbers?\ny/n');
-    includeNumbers = includeNumbers.toLocaleLowerCase;
+    var choiceOfSpecial = prompt('Include special characters?\ny/n');
+    choiceOfSpecial = choiceOfSpecial;
+
+    var choiceOfNumber = prompt('Include numbers?\ny/n');
+    choiceOfNumber = choiceOfNumber;
+
+
+    // Master Array Function 
+    // -figure out how to consolidate this code
 
     function createMasterArray() {
-      if (lowerCharacters === 'y') {
-        for (var i = 0; i < regCharacters.length; i++) {
-          masterCharacterArray.push(regCharacters[i])
+      if (choiceOfLower === 'y') {
+        for (var i = 0; i < lowerCharacters.length; i++) {
+          masterCharacterArray.push(lowerCharacters[i])
         }
+      } 
+      
+      if (choiceOfUpper === 'y') {
+        for (var i = 0; i < upperCharacters.length; i++) {
+          masterCharacterArray.push(upperCharacters[i])
+        }
+      } 
+      
+      if (choiceOfSpecial === 'y') {
+        for (var i = 0; i < specialCharacters.length; i++) {
+          masterCharacterArray.push(specialCharacters[i])
+        }
+      } 
+      
+      if (choiceOfNumber === 'y') {
+        for (var i = 0; i < numberArray.length; i++) {
+          masterCharacterArray.push(numberArray[i])
       }
-
+    }
       console.log(masterCharacterArray);
     }
     
