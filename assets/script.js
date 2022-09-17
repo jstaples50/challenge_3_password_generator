@@ -119,50 +119,6 @@ function writePassword() {
         }
       }
 
-      // FIX THIS WHILE LOOP!!!!!!
-
-      // while (notContainsAllTypes) {
-
-      //   if (choiceOfLower === 'y') {
-      //     var boolean = checkArray(lowerCharacters);
-      //     if (!boolean) {
-      //       newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
-      //     }
-      //   } else {
-      //     containsLower = true;
-      //   }
-      //   if (choiceOfUpper === 'y') {
-      //     var boolean = checkArray(upperCharacters);
-      //     if (!boolean) {
-      //       newPassword[randomNum(newPassword)] = upperCharacters[randomNum(upperCharacters)];
-      //     }
-      //   } else {
-      //     containsUpper = true;
-      //   }
-      //   if (choiceOfSpecial === 'y') {
-      //     var boolean = checkArray(specialCharacters);
-      //     if (!boolean) {
-      //       newPassword[randomNum(newPassword)] = specialCharacters[randomNum(specialCharacters)];
-      //     }
-      //   } else {
-      //     containsSpecial = true;
-      //   }
-      //   if (choiceOfNumber === 'y') {
-      //     var boolean = checkArray(numberArray);
-      //     if (!boolean) {
-      //       newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
-      //     }
-      //   } else {
-      //     containsNumber = true;
-      //   }
-
-      //   if (containsLower && containsUpper && containsSpecial && containsNumber) {
-      //     notContainsAllTypes = true;
-      //   }
-      // }
-
-      
-
     }
 
     createMasterArray();
