@@ -35,136 +35,138 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   var masterBool = false;
 
+  var numberOfCharacters = prompt('How many characters?');
+  if (numberOfCharacters < 8 | numberOfCharacters > 128) {
+    alert('Not within parameters. Password must be at least 8 characters, max 128 characters');
+    return
+  }
+  // - figure out how to reset variable input if alert is pinged
+
+  // Prompt variables
+  // - figure out how to use .toLowercase method on the prompt variables DONE
+
+  var choiceOfLower = prompt('Include lowercase letters?\ny/n');
+  choiceOfLower = choiceOfLower.toLocaleLowerCase();
+  
+  var choiceOfUpper = prompt('Include uppercase letters?\ny/n');
+  choiceOfUpper = choiceOfUpper.toLocaleLowerCase();
+
+  var choiceOfSpecial = prompt('Include special characters?\ny/n');
+  choiceOfSpecial = choiceOfSpecial.toLocaleLowerCase();
+
+  var choiceOfNumber = prompt('Include numbers?\ny/n');
+  choiceOfNumber = choiceOfNumber.toLocaleLowerCase();
+
+  var newPassword = "";
+
 
   function generatePassword() {
-    var lowerCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    var upperCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split('');
-      // - figure out how to use split with this var
-    var numberArray = '1234567890'.split('');
-    var staticTotalArray = [lowerCharacters, upperCharacters, specialCharacters, numberArray];
-    var masterCharacterArray = [];
-    var newPassword = "";
+    while (!masterBool) {
+      newPassword = ""
+      var lowerCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      var upperCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split('');
+      var numberArray = '1234567890'.split('');
+      var masterCharacterArray = [];
 
-    var lowerBool = false;
-    var upperBool = false;
-    var specialBool = false;
-    var numberBool = false;
-    
+      var lowerBool = false;
+      var upperBool = false;
+      var specialBool = false;
+      var numberBool = false;
 
-    var boolArray = [lowerBool, upperBool, specialBool, numberBool];
-
-    var numberOfCharacters = prompt('How many characters?');
-    if (numberOfCharacters < 8 | numberOfCharacters > 128) {
-      alert('Not within parameters. Password must be at least 8 characters, max 128 characters');
-    }
-    // - figure out how to reset variable input if alert is pinged
-
-    // Prompt variables
-    // - figure out how to use .toLowercase method on the prompt variables DONE
-
-    var choiceOfLower = prompt('Include lowercase letters?\ny/n');
-    choiceOfLower = choiceOfLower.toLocaleLowerCase();
-    
-    var choiceOfUpper = prompt('Include uppercase letters?\ny/n');
-    choiceOfUpper = choiceOfUpper.toLocaleLowerCase();
-
-    var choiceOfSpecial = prompt('Include special characters?\ny/n');
-    choiceOfSpecial = choiceOfSpecial.toLocaleLowerCase();
-
-    var choiceOfNumber = prompt('Include numbers?\ny/n');
-    choiceOfNumber = choiceOfNumber.toLocaleLowerCase();
-
-
-    // Master Array Function 
-    // -figure out how to consolidate this code DONE
-
-    function createMasterArray() {
-
-      function addCharLoop(array) {
-        for (var i = 0; i < array.length; i++) {
-          masterCharacterArray.push(array[i])
-        }
-      }
-
-      if (choiceOfLower === 'y') {
-        addCharLoop(lowerCharacters);
+      if (choiceOfLower === "n") {
+        lowerBool = true;
       } 
-      if (choiceOfUpper === 'y') {
-       addCharLoop(upperCharacters);
+      if (choiceOfUpper === "n" ) {
+        upperBool = true;
       } 
-      if (choiceOfSpecial === 'y') {
-        addCharLoop(specialCharacters)
-      } 
-      if (choiceOfNumber === 'y') {
-        addCharLoop(numberArray);
+      if (choiceOfSpecial === "n") {
+        specialBool = true;
       }
-    }
-
-    function addCharToPassword() {
-      for (var i = 0; i < numberOfCharacters; i++) {
-        var randIndex = Math.floor(Math.random() * masterCharacterArray.length);
-        newPassword += masterCharacterArray[randIndex];
-      }
-    }
-    
-    function checkCharTypes() {
-
-      var notContainsAllTypes = true; 
-      var containsLower = false;
-      var containsUpper = false;
-      var containsSpecial = false;
-      var containsNumber = false;
-      
-      function randomNum(variable) {
-         Math.floor(Math.random() * variable.length);
+      if (choiceOfNumber === "n") {
+        numberBool = true;
       }
 
-      function checkArray(array) {
-        for (var i = 0; i < newPassword.length; i++) {
-          if (array.includes(newPassword[i])) {
-            console.log(`password contains element from ${array}`);
-            return true;
+
+      function createMasterArray() {
+
+        function addCharLoop(array) {
+          for (var i = 0; i < array.length; i++) {
+            masterCharacterArray.push(array[i])
           }
         }
-      }
 
-
-    }
-
-    function checkPassword(array) {
-      for (var i = 0; i < array.length; i++) {
-        if (newPassword.includes(array[i])) {
-          console.log(`${array} true`);
-          return true 
+        if (choiceOfLower === 'y') {
+          addCharLoop(lowerCharacters);
         } 
+        if (choiceOfUpper === 'y') {
+        addCharLoop(upperCharacters);
+        } 
+        if (choiceOfSpecial === 'y') {
+          addCharLoop(specialCharacters)
+        } 
+        if (choiceOfNumber === 'y') {
+          addCharLoop(numberArray);
+        }
+      }
+
+      function addCharToPassword() {
+        for (var i = 0; i < numberOfCharacters; i++) {
+          var randIndex = Math.floor(Math.random() * masterCharacterArray.length);
+          newPassword += masterCharacterArray[randIndex];
+        }
+      }
+      
+      function checkPassword(array) {
+        let switchValue = ""
+        for (var i = 0; i < array.length; i++) {
+          if (newPassword.includes(array[i])) {
+            console.log(`${array} true`);
+            switchValue = true;
+            break; 
+          } 
+        }
+        if (switchValue === true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+
+      createMasterArray();
+      addCharToPassword();
+
+
+      if (choiceOfLower === 'y') {
+        lowerBool = checkPassword(lowerCharacters);
+      } 
+      if (choiceOfUpper === 'y') {
+        upperBool = checkPassword(upperCharacters);
+      } 
+      if (choiceOfSpecial === 'y') {
+        specialBool = checkPassword(specialCharacters);
+      } 
+      if (choiceOfNumber === 'y') {
+        numberBool = checkPassword(numberArray);
+      }
+    
+      console.log("lower bool: " + lowerBool);
+      console.log("upper bool: " + upperBool);
+      console.log("special bool: " + specialBool);
+      console.log("number bool: " + numberBool);
+
+      if (lowerBool && upperBool && specialBool && numberBool) {
+        masterBool = true;
+        console.log('master bool is true');
       }
     }
-
-    createMasterArray();
-    addCharToPassword();
-    // checkCharTypes();
-   
-    lowerBool = checkPassword(lowerCharacters);
-    upperBool = checkPassword(upperCharacters);
-    specialBool = checkPassword(specialCharacters);
-    numberBool = checkPassword(numberArray);
-
-
-    console.log("lower bool: " + lowerBool);
-    console.log("upper bool: " + upperBool);
-    console.log("special bool: " + specialBool);
-    console.log("number bool: " + numberBool);
-
-    if (lowerBool && upperBool && specialBool && numberBool) {
-      masterBool = true;
-    }
-
     return newPassword;
   };
 
-  var password = generatePassword();
 
+  var password = generatePassword();
+  console.log('from outside of generate password function. master bool is: ' + masterBool);
   passwordText.value = password;
 }
 
