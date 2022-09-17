@@ -32,8 +32,9 @@ var generateBtn = document.querySelector("#generate");
 //        - if a character type is missing, the first index of the password is swapped out for the missing index. if the parameters are not met, the next index is replaced. process continues until all correct characters are present
 
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  var masterBool = false;
+
 
   function generatePassword() {
     var lowerCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -41,8 +42,17 @@ function writePassword() {
     var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split('');
       // - figure out how to use split with this var
     var numberArray = '1234567890'.split('');
+    var staticTotalArray = [lowerCharacters, upperCharacters, specialCharacters, numberArray];
     var masterCharacterArray = [];
     var newPassword = "";
+
+    var lowerBool = false;
+    var upperBool = false;
+    var specialBool = false;
+    var numberBool = false;
+    
+
+    var boolArray = [lowerBool, upperBool, specialBool, numberBool];
 
     var numberOfCharacters = prompt('How many characters?');
     if (numberOfCharacters < 8 | numberOfCharacters > 128) {
@@ -119,13 +129,42 @@ function writePassword() {
         }
       }
 
+
+    }
+
+    function checkPassword(array) {
+      for (var i = 0; i < array.length; i++) {
+        if (newPassword.includes(array[i])) {
+          console.log(`${array} true`);
+          return true 
+        } 
+      }
     }
 
     createMasterArray();
     addCharToPassword();
-    checkCharTypes();
+    // checkCharTypes();
+   
+    lowerBool = checkPassword(lowerCharacters);
+    upperBool = checkPassword(upperCharacters);
+    specialBool = checkPassword(specialCharacters);
+    numberBool = checkPassword(numberArray);
+
+
+    console.log("lower bool: " + lowerBool);
+    console.log("upper bool: " + upperBool);
+    console.log("special bool: " + specialBool);
+    console.log("number bool: " + numberBool);
+
+    if (lowerBool && upperBool && specialBool && numberBool) {
+      masterBool = true;
+    }
+
     return newPassword;
   };
+
+  var password = generatePassword();
+
   passwordText.value = password;
 }
 
