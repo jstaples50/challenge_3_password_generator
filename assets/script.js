@@ -99,6 +99,12 @@ function writePassword() {
     }
     
     function checkCharTypes() {
+
+      var notContainsAllTypes = true; 
+      var containsLower = false;
+      var containsUpper = false;
+      var containsSpecial = false;
+      var containsNumber = false;
       
       function randomNum(variable) {
          Math.floor(Math.random() * variable.length);
@@ -107,35 +113,56 @@ function writePassword() {
       function checkArray(array) {
         for (var i = 0; i < newPassword.length; i++) {
           if (array.includes(newPassword[i])) {
+            console.log(`password contains element from ${array}`);
             return true;
           }
         }
       }
 
-      if (choiceOfLower === 'y') {
-        var boolean = checkArray(lowerCharacters);
-        if (!boolean) {
-          newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
-        }
-      } 
-      if (choiceOfUpper === 'y') {
-        var boolean = checkArray(upperCharacters);
-        if (!boolean) {
-          newPassword[randomNum(newPassword)] = upperCharacters[randomNum(upperCharacters)];
-        }
-      } 
-      if (choiceOfSpecial === 'y') {
-        var boolean = checkArray(specialCharacters);
-        if (!boolean) {
-          newPassword[randomNum(newPassword)] = specialCharacters[randomNum(specialCharacters)];
-        }
-      } 
-      if (choiceOfNumber === 'y') {
-        var boolean = checkArray(numberArray);
-        if (!boolean) {
-          newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
-        }
-      }
+      // FIX THIS WHILE LOOP!!!!!!
+
+      // while (notContainsAllTypes) {
+
+      //   if (choiceOfLower === 'y') {
+      //     var boolean = checkArray(lowerCharacters);
+      //     if (!boolean) {
+      //       newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
+      //     }
+      //   } else {
+      //     containsLower = true;
+      //   }
+      //   if (choiceOfUpper === 'y') {
+      //     var boolean = checkArray(upperCharacters);
+      //     if (!boolean) {
+      //       newPassword[randomNum(newPassword)] = upperCharacters[randomNum(upperCharacters)];
+      //     }
+      //   } else {
+      //     containsUpper = true;
+      //   }
+      //   if (choiceOfSpecial === 'y') {
+      //     var boolean = checkArray(specialCharacters);
+      //     if (!boolean) {
+      //       newPassword[randomNum(newPassword)] = specialCharacters[randomNum(specialCharacters)];
+      //     }
+      //   } else {
+      //     containsSpecial = true;
+      //   }
+      //   if (choiceOfNumber === 'y') {
+      //     var boolean = checkArray(numberArray);
+      //     if (!boolean) {
+      //       newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
+      //     }
+      //   } else {
+      //     containsNumber = true;
+      //   }
+
+      //   if (containsLower && containsUpper && containsSpecial && containsNumber) {
+      //     notContainsAllTypes = true;
+      //   }
+      // }
+
+      
+
     }
 
     createMasterArray();
