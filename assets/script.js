@@ -9,7 +9,7 @@ var generateBtn = document.querySelector("#generate");
 //    -Array with special characters DONE
 //    -Empty variable that will hold the new password string DONE
 
-// 2 prompts needed
+// 2 prompts needed DONE
 //    -for length (min 8 max 128);
 //        -alert if choice is outside of parameters
 //    -for choice to include lower, upper, numbers, and special characters
@@ -24,7 +24,7 @@ var generateBtn = document.querySelector("#generate");
 
 //    -depending on prompts, a new array containing all of the available choices DONE
 
-//    - a for loop that iterates a number of times equal to the length of the password
+//    - a for loop that iterates a number of times equal to the length of the password DONE
 //        - each iteration, a character from the master array is added to the new password string
 //        - random math method used to pick the character from master array. The multiplier to the Math.random is the total number of characters in the master array
 
@@ -51,19 +51,19 @@ function writePassword() {
     // - figure out how to reset variable input if alert is pinged
 
     // Prompt variables
-    // - figure out how to use .toLowercase method on the prompt variables
+    // - figure out how to use .toLowercase method on the prompt variables DONE
 
     var choiceOfLower = prompt('Include lowercase letters?\ny/n');
-    choiceOfLower = choiceOfLower;
+    choiceOfLower = choiceOfLower.toLocaleLowerCase();
     
     var choiceOfUpper = prompt('Include uppercase letters?\ny/n');
-    choiceOfUpper = choiceOfUpper;
+    choiceOfUpper = choiceOfUpper.toLocaleLowerCase();
 
     var choiceOfSpecial = prompt('Include special characters?\ny/n');
-    choiceOfSpecial = choiceOfSpecial;
+    choiceOfSpecial = choiceOfSpecial.toLocaleLowerCase();
 
     var choiceOfNumber = prompt('Include numbers?\ny/n');
-    choiceOfNumber = choiceOfNumber;
+    choiceOfNumber = choiceOfNumber.toLocaleLowerCase();
 
 
     // Master Array Function 
@@ -98,8 +98,49 @@ function writePassword() {
       }
     }
     
+    function checkCharTypes() {
+      
+      function randomNum(variable) {
+         Math.floor(Math.random() * variable.length);
+      }
+
+      function checkArray(array) {
+        for (var i = 0; i < newPassword.length; i++) {
+          if (array.includes(newPassword[i])) {
+            return true;
+          }
+        }
+      }
+
+      if (choiceOfLower === 'y') {
+        var boolean = checkArray(lowerCharacters);
+        if (!boolean) {
+          newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
+        }
+      } 
+      if (choiceOfUpper === 'y') {
+        var boolean = checkArray(upperCharacters);
+        if (!boolean) {
+          newPassword[randomNum(newPassword)] = upperCharacters[randomNum(upperCharacters)];
+        }
+      } 
+      if (choiceOfSpecial === 'y') {
+        var boolean = checkArray(specialCharacters);
+        if (!boolean) {
+          newPassword[randomNum(newPassword)] = specialCharacters[randomNum(specialCharacters)];
+        }
+      } 
+      if (choiceOfNumber === 'y') {
+        var boolean = checkArray(numberArray);
+        if (!boolean) {
+          newPassword[randomNum(newPassword)] = lowerCharacters[randomNum(lowerCharacters)];
+        }
+      }
+    }
+
     createMasterArray();
     addCharToPassword();
+    checkCharTypes();
     return newPassword;
   };
   passwordText.value = password;
