@@ -24,14 +24,12 @@ N/A
 
 Navigate to the webpage and follow prompts to generate random password.
 Pull up DevTools console to see if the parameters for password were met.
+   
+![Password Generator Screen](/assets/password_generator_screen.png)
 
-Provide instructions and examples for use. Include screenshots as needed.
+Link to website:
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+[Generate Random Password](https://jstaples50.github.io/challenge_3_password_generator/)
 
 
 
